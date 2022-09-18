@@ -2,7 +2,7 @@ package config
 
 import (
 	"flag"
-	"fmt"
+	"log"
 	"path/filepath"
 	"strings"
 
@@ -30,19 +30,19 @@ func viperSetting(configPath string) error {
 	if err := viper.ReadInConfig(); err != nil {
 		return errors.Errorf("viper.ReadInConfig error(%v)", err)
 	}
-	fmt.Println("viper.ConfigFileUsed OK:", viper.ConfigFileUsed())
+	log.Println("viper.ConfigFileUsed OK:", viper.ConfigFileUsed())
 
-	viper.AutomaticEnv() 
-	viper.SetEnvKeyReplacer(strings.NewReplacer(".", "_"))// export  SERVICE_NAME=test //Name Rule: Upper with '_'
-	
+	viper.AutomaticEnv()
+	viper.SetEnvKeyReplacer(strings.NewReplacer(".", "_")) // export  SERVICE_NAME=test //Name Rule: Upper with '_'
+
 	err := viper.Unmarshal(&configData) //bind struct
 	if err != nil {
 		return errors.Errorf("viper.Unmarshal:(%v)", err)
 	}
 
-	fmt.Println("data:", viper.Get("service.name"))
-	fmt.Println("Mongo:", viper.Get("Clients.Mongo.Host"))
-	fmt.Println("Service.Name:", configData.Service.Name)
+	log.Println("data:", viper.Get("service.name"))        //TODO test case
+	log.Println("Mongo:", viper.Get("Clients.Mongo.Host")) //map
+	log.Println("Service.Name:", configData.Service.Name)
 	return nil
 }
 

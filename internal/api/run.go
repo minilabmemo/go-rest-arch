@@ -1,7 +1,7 @@
 package api
 
-import "fmt"
+import "go.uber.org/zap"
 
 func Run() {
-	fmt.Printf("OK")
+	zap.S().Infof("OK")
 }

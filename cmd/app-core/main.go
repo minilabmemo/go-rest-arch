@@ -10,6 +10,7 @@ import (
 
 	"github.com/minilabmemo/go-rest-arch/internal/api"
 	"github.com/minilabmemo/go-rest-arch/internal/config"
+	"github.com/minilabmemo/go-rest-arch/internal/logger"
 	"go.uber.org/zap"
 )
 
@@ -31,6 +32,7 @@ func main() {
 }
 
 func startup() {
+	logger.InitLogger()
 	api.Run()
 }
 
