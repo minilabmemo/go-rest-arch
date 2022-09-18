@@ -7,3 +7,12 @@ StartupMsg = 'This is the docker Environment StartupMsg.'
 [Logg]
 Level = 'DEBUG'
 File = '/logs/app-core.log'
+
+
+[Clients]
+  [Clients.Mongo]
+  Protocol = 'http'
+  Host = 'mongo'
+  Port = 27017
+  Username = ''
+  Password = ''

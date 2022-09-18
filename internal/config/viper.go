@@ -32,8 +32,8 @@ func viperSetting(configPath string) error {
 	}
 	fmt.Println("viper.ConfigFileUsed OK:", viper.ConfigFileUsed())
 
-	viper.AutomaticEnv() //export  SERVICE_NAME=test2
-	viper.SetEnvKeyReplacer(strings.NewReplacer(".", "_"))
+	viper.AutomaticEnv() 
+	viper.SetEnvKeyReplacer(strings.NewReplacer(".", "_"))// export  SERVICE_NAME=test //Name Rule: Upper with '_'
 	
 	err := viper.Unmarshal(&configData) //bind struct
 	if err != nil {
@@ -41,6 +41,7 @@ func viperSetting(configPath string) error {
 	}
 
 	fmt.Println("data:", viper.Get("service.name"))
+	fmt.Println("Mongo:", viper.Get("Clients.Mongo.Host"))
 	fmt.Println("Service.Name:", configData.Service.Name)
 	return nil
 }
