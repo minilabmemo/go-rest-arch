@@ -1,0 +1,9 @@
+[Service]
+Name="app-core"
+Port = 48168
+StartupMsg = 'This is the local Environment StartupMsg.'
+
+
+[Logg]
+Level = 'DEBUG'
+File = '/logs/app-core.log'

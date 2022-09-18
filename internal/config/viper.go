@@ -1,0 +1,63 @@
+package config
+
+import (
+	"flag"
+	"fmt"
+	"path/filepath"
+	"strings"
+
+	"github.com/pkg/errors"
+
+	"github.com/spf13/viper"
+)
+
+func LoadConfig() error {
+	var env string
+	var confDir string
+	flag.StringVar(&confDir, "confdir", "", "Specify local configuration directory") //configs
+	flag.StringVar(&env, "env", "local", "Specify a env directory than default.")    //local or docker
+	flag.Parse()
+
+	path := determinePath(confDir, env)
+	return viperSetting(path)
+}
+
+func viperSetting(configPath string) error {
+	viper.SetConfigType(defaultConfigType)
+	viper.AddConfigPath(configPath)
+	viper.SetConfigName(serviceFileName)
+
+	if err := viper.ReadInConfig(); err != nil {
+		return errors.Errorf("viper.ReadInConfig error(%v)", err)
+	}
+	fmt.Println("viper.ConfigFileUsed OK:", viper.ConfigFileUsed())
+
+	viper.AutomaticEnv() //export  SERVICE_NAME=test2
+	viper.SetEnvKeyReplacer(strings.NewReplacer(".", "_"))
+	
+	err := viper.Unmarshal(&configData) //bind struct
+	if err != nil {
+		return errors.Errorf("viper.Unmarshal:(%v)", err)
+	}
+
+	fmt.Println("data:", viper.Get("service.name"))
+	fmt.Println("Service.Name:", configData.Service.Name)
+	return nil
+}
+
+const (
+	defaultConfigDirectory = "./configs"
+	defaultConfigType      = "toml"
+	serviceFileName        = "service"
+)
+
+func determinePath(confDir, env string) string {
+	path := confDir
+	if len(path) == 0 {
+		path = defaultConfigDirectory
+	}
+
+	path = filepath.Join(path, env)
+
+	return path
+}
