@@ -1,6 +1,6 @@
 [Service]
 Name="app-core"
-Port = 48168
+Port = 8888
 StartupMsg = 'This is the local Environment StartupMsg.'
 
 

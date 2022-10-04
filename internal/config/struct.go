@@ -5,7 +5,7 @@ import (
 	"strings"
 )
 
-var configData *CofigDefinition
+var ConfigData *CofigDefinition
 
 type CofigDefinition struct {
 	Service ServiceInfo

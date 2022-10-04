@@ -35,14 +35,14 @@ func viperSetting(configPath string) error {
 	viper.AutomaticEnv()
 	viper.SetEnvKeyReplacer(strings.NewReplacer(".", "_")) // export  SERVICE_NAME=test //Name Rule: Upper with '_'
 
-	err := viper.Unmarshal(&configData) //bind struct
+	err := viper.Unmarshal(&ConfigData) //bind struct
 	if err != nil {
 		return errors.Errorf("viper.Unmarshal:(%v)", err)
 	}
 
 	log.Println("data:", viper.Get("service.name"))        //TODO test case
 	log.Println("Mongo:", viper.Get("Clients.Mongo.Host")) //map
-	log.Println("Service.Name:", configData.Service.Name)
+	log.Println("Service.Name:", ConfigData.Service.Name)
 	return nil
 }
 

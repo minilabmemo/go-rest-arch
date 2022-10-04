@@ -1,7 +1,25 @@
 package api
 
-import "go.uber.org/zap"
+import (
+	"fmt"
 
-func Run() {
-	zap.S().Infof("OK")
+	"github.com/gin-gonic/gin"
+	"github.com/minilabmemo/go-rest-arch/internal/config"
+	"go.uber.org/zap"
+)
+
+func StartHttpServer(errChan chan error) {
+	gin.SetMode(gin.ReleaseMode)
+
+	engine := gin.New()
+	//TODO mid
+
+	loadRoutes(engine)
+
+	endpoint := fmt.Sprintf(":%d", config.ConfigData.Service.Port)
+	go func() {
+		errChan <- engine.Run(endpoint)
+	}()
+
+	zap.S().Infof("Listening on port: %d", config.ConfigData.Service.Port)
 }

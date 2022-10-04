@@ -23,17 +23,20 @@ func init() {
 
 func main() {
 	start := time.Now()
-	errs := make(chan error, 1)
-	startup()
+	errs := make(chan error, 3)
+	listenForInterrupt(errs)
+	startup(errs)
+	defer stopMain()
 
 	zap.S().Infof("Service started in: %v", time.Since(start))
 	c := <-errs
 	zap.S().Warnf("terminating: %v", c)
 }
 
-func startup() {
+func startup(err chan error) {
 	logger.InitLogger()
-	api.Run()
+	api.StartHttpServer(err)
+
 }
 
 func stopMain() {
