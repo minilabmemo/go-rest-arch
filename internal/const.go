@@ -2,5 +2,5 @@ package internal
 
 const (
 	ConfigDirectory = "./configs"
-	// ConfigFileName  = "configuration.toml"
+	Version         = "1.0.0"
 )

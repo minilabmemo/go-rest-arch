@@ -8,6 +8,7 @@ import (
 	"syscall"
 	"time"
 
+	"github.com/minilabmemo/go-rest-arch/internal"
 	"github.com/minilabmemo/go-rest-arch/internal/api"
 	"github.com/minilabmemo/go-rest-arch/internal/config"
 	"github.com/minilabmemo/go-rest-arch/internal/logger"
@@ -29,6 +30,7 @@ func main() {
 	defer stopMain()
 
 	zap.S().Infof("Service started in: %v", time.Since(start))
+	zap.S().Infof("Version %s", internal.Version)
 	c := <-errs
 	zap.S().Warnf("terminating: %v", c)
 }
