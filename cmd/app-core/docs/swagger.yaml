@@ -1,3 +1,14 @@
+definitions:
+  models.Info:
+    properties:
+      name:
+        type: string
+      version:
+        type: string
+    required:
+    - name
+    - version
+    type: object
 info:
   contact: {}
   description: This is a sample server celler server.
@@ -17,6 +28,23 @@ paths:
           schema:
             type: string
       summary: Get info API
+      tags:
+      - infos
+    put:
+      description: put info API service name
+      parameters:
+      - description: Info
+        in: body
+        name: Info
+        required: true
+        schema:
+          $ref: '#/definitions/models.Info'
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: put info API
       tags:
       - infos
 swagger: "2.0"

@@ -37,6 +37,49 @@ const docTemplate = `{
                         }
                     }
                 }
+            },
+            "put": {
+                "description": "put info API service name",
+                "tags": [
+                    "infos"
+                ],
+                "summary": "put info API",
+                "parameters": [
+                    {
+                        "description": "Info",
+                        "name": "Info",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Info"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "models.Info": {
+            "type": "object",
+            "required": [
+                "name",
+                "version"
+            ],
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "version": {
+                    "type": "string"
+                }
             }
         }
     }

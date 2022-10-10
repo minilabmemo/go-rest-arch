@@ -9,7 +9,7 @@ import (
 	"time"
 
 	"github.com/gin-gonic/gin"
-	_ "github.com/minilabmemo/go-rest-arch/cmd/app-core/docs"
+	docs "github.com/minilabmemo/go-rest-arch/cmd/app-core/docs"
 	"github.com/minilabmemo/go-rest-arch/internal"
 	"github.com/minilabmemo/go-rest-arch/internal/apis"
 	"github.com/minilabmemo/go-rest-arch/internal/card/delivery/ginrouter"
@@ -36,7 +36,7 @@ func main() {
 	listenForInterrupt(errs)
 	startup(errs)
 	defer stopMain()
-
+	docs.SwaggerInfo.Title = fmt.Sprintf("Swagger %s API", config.ConfigData.Service.Name)
 	zap.S().Infof("Service started in: %v", time.Since(start))
 	zap.S().Infof("Version %s", internal.Version)
 	c := <-errs
