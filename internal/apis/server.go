@@ -1,20 +1,14 @@
-package api
+package apis
 
 import (
 	"fmt"
 
 	"github.com/gin-gonic/gin"
 	"github.com/minilabmemo/go-rest-arch/internal/config"
-
 	"go.uber.org/zap"
 )
 
-func StartHttpServer(errChan chan error) {
-	gin.SetMode(gin.ReleaseMode)
-
-	engine := gin.New()
-
-	loadRoutes(engine)
+func StartHttpServer(errChan chan error, engine *gin.Engine) {
 
 	endpoint := fmt.Sprintf(":%d", config.ConfigData.Service.Port)
 	go func() {
