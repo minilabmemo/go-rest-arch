@@ -19,9 +19,18 @@ func NewInfoHandler(base *gin.RouterGroup, us models.InfoUsecase) {
 	}
 
 	base.GET("/info", handler.GetInfo) //e.g.: http://127.0.0.1:8888/service/api/v1/info
-	
+	base.PUT("/info", handler.UpdateInfo)
 
 }
+
+// @Summary Get info API
+// @Schemes http xx
+// @Description Get info API
+// @Tags infos
+// @Accept json
+// @Produce json
+// @Success 200 {string} ok
+// @Router /service/api/v1/info [get]
 func (a *InfoHandler) GetInfo(c *gin.Context) {
 	//call usecase method
 	info, _ := a.CUsecase.GetInfo()
@@ -29,7 +38,13 @@ func (a *InfoHandler) GetInfo(c *gin.Context) {
 	c.JSON(http.StatusOK, info)
 }
 
-
+// @Summary put info API
+// @Schemes http
+// @Description put info API service name
+// @Tags infos
+// @Param Info body models.Info true "Info"
+// @Success 200 {string} ok
+// @Router /service/api/v1/info [put]
 func (a *InfoHandler) UpdateInfo(c *gin.Context) {
 
 	body := models.Info{}

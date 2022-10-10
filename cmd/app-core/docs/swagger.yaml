@@ -1,0 +1,50 @@
+definitions:
+  models.Info:
+    properties:
+      name:
+        type: string
+      version:
+        type: string
+    required:
+    - name
+    - version
+    type: object
+info:
+  contact: {}
+  description: This is a sample server celler server.
+  title: Swagger Example API
+  version: "1.0"
+paths:
+  /service/api/v1/info:
+    get:
+      consumes:
+      - application/json
+      description: Get info API
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: Get info API
+      tags:
+      - infos
+    put:
+      description: put info API service name
+      parameters:
+      - description: Info
+        in: body
+        name: Info
+        required: true
+        schema:
+          $ref: '#/definitions/models.Info'
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: put info API
+      tags:
+      - infos
+swagger: "2.0"
