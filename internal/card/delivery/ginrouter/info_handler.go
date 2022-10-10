@@ -19,9 +19,17 @@ func NewInfoHandler(base *gin.RouterGroup, us models.InfoUsecase) {
 	}
 
 	base.GET("/info", handler.GetInfo) //e.g.: http://127.0.0.1:8888/service/api/v1/info
-	
 
 }
+
+// @Summary Get info API
+// @Schemes http xx
+// @Description Get info API
+// @Tags infos
+// @Accept json
+// @Produce json
+// @Success 200 {string} Helloworld
+// @Router /service/api/v1/info [get]
 func (a *InfoHandler) GetInfo(c *gin.Context) {
 	//call usecase method
 	info, _ := a.CUsecase.GetInfo()

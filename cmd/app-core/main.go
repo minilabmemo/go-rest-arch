@@ -9,12 +9,14 @@ import (
 	"time"
 
 	"github.com/gin-gonic/gin"
+	_ "github.com/minilabmemo/go-rest-arch/cmd/app-core/docs"
 	"github.com/minilabmemo/go-rest-arch/internal"
 	"github.com/minilabmemo/go-rest-arch/internal/apis"
 	"github.com/minilabmemo/go-rest-arch/internal/card/delivery/ginrouter"
 	"github.com/minilabmemo/go-rest-arch/internal/card/usecase"
 	"github.com/minilabmemo/go-rest-arch/internal/config"
 	"github.com/minilabmemo/go-rest-arch/internal/logger"
+
 	"go.uber.org/zap"
 )
 
@@ -25,6 +27,9 @@ func init() {
 	}
 }
 
+// @title           Swagger Example API
+// @version         1.0
+// @description     This is a sample server celler server.
 func main() {
 	start := time.Now()
 	errs := make(chan error, 3)
