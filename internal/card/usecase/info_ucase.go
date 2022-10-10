@@ -1,7 +1,7 @@
 package usecase
 
 import (
-	"time"
+	"github.com/pkg/errors"
 
 	"github.com/minilabmemo/go-rest-arch/internal"
 	"github.com/minilabmemo/go-rest-arch/internal/config"
@@ -9,19 +9,29 @@ import (
 )
 
 type infoUsecase struct {
-	contextTimeout time.Duration
+	config config.CofigDefinition
 }
 
 // NewInfoUsecase 會產生一個新的 infoUsecase 物件代表 models.InfoUsecase interface[介面]
-func NewInfoUsecase(timeout time.Duration) models.InfoUsecase {
+func NewInfoUsecase(config config.CofigDefinition) models.InfoUsecase {
 	return &infoUsecase{
-		contextTimeout: timeout,
+		config: config,
 	}
 }
 
-//implement info usecase logic , ginrouter wrapper 'Usecase' for handle setting
-//實作InfoUsecase[介面]裡面的方法， ginrouter.NewInfoHandler 的參數會需要它
-func (*infoUsecase) Fetch(config.CofigDefinition) (models.Info, error) {
+//implement info usecase logic , In e.g.: ginrouter wrapper 'Usecase' struct for handle
+//實作InfoUsecase[介面]裡面的方法， 範例中delevery 的ginrouter.NewInfoHandler 的參數會需要它
+func (*infoUsecase) GetInfo() (models.Info, error) {
 	return models.Info{Name: config.ConfigData.Service.Name, Version: internal.Version}, nil
 
+}
+
+func (*infoUsecase) Update(info *models.Info) error {
+	if info == nil {
+		return errors.Errorf("no update body")
+	}
+	config.ConfigData.Service.Name = info.Name
+	// internal.Version = info.Version
+
+	return nil
 }
