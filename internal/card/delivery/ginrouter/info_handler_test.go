@@ -34,7 +34,7 @@ func loadRoutes(engine *gin.Engine) {
 
 }
 
-//go test -v .  //TODO 0.357s	coverage: 71.4% of statements
+//go test -v .  //	0.280s	coverage: 100.0% of statements
 func TestInfoHandler(t *testing.T) {
 	// main
 	engine := setUpEngine()
@@ -72,6 +72,26 @@ func TestUpdateInfoHandler(t *testing.T) {
 	if !reflect.DeepEqual(w2.Body.String(), expactedResp) {
 		t.Errorf("Resp(%s) != expactedResp(%s)", w2.Body.String(), expactedResp)
 	}
+}
+
+func Test_UpdateInfoBadHandler(t *testing.T) {
+	engine := setUpEngine()
+
+	//模擬發出MethodPut請求 //故意放入nil body
+	w := httptest.NewRecorder()
+	req, _ := http.NewRequest(http.MethodPut, "/service/api/v1/info", nil)
+	engine.ServeHTTP(w, req)
+	t.Log("Code", w.Code)
+	//驗證發起請求後的回覆是否正確
+	assert.Equal(t, http.StatusBadRequest, w.Code)
+
+	//模擬發出MethodPut請求 //故意放入nil body
+	body := models.Info{Name: ""}
+	w2 := httpTestRequestWithBody(http.MethodPut, "/service/api/v1/info", body, engine)
+
+	t.Log("Code", w2.Code)
+	//驗證發起請求後的回覆是否正確
+	assert.Equal(t, http.StatusExpectationFailed, w2.Code)
 }
 
 // 模擬MethodGet發生

@@ -27,8 +27,8 @@ func (*infoUsecase) GetInfo() (models.Info, error) {
 }
 
 func (*infoUsecase) Update(info *models.Info) error {
-	if info == nil {
-		return errors.Errorf("no update body")
+	if info.Name == "" {
+		return errors.Errorf("no Name")
 	}
 	config.ConfigData.Service.Name = info.Name
 	// internal.Version = info.Version
