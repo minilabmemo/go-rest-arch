@@ -13,7 +13,8 @@
 All version info listed in go.mod
 - viper
 - zaplog
-
+- swagger UI : http://localhost:8888/swagger/index.html
+- Gin/httptest
 
 
 ### start
