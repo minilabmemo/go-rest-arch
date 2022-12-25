@@ -26,4 +26,9 @@ go run main.go
 
 ```
 
-test
+### docker
+>
+在`docker build -t app-core .` 時 會發現 RUN command 沒有output顯示
+這時可以在前面加上DOCKER_BUILDKIT=0 也就是DOCKER_BUILDKIT=0 docker build -t app-core .
+see https://makeoptim.com/en/tool/docker-build-not-output
+
