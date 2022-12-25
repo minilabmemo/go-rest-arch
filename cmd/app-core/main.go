@@ -10,12 +10,12 @@ import (
 
 	"github.com/gin-gonic/gin"
 	docs "github.com/minilabmemo/go-rest-arch/cmd/app-core/docs"
-	"github.com/minilabmemo/go-rest-arch/internal"
-	"github.com/minilabmemo/go-rest-arch/internal/apis"
-	"github.com/minilabmemo/go-rest-arch/internal/card/delivery/ginrouter"
-	"github.com/minilabmemo/go-rest-arch/internal/card/usecase"
-	"github.com/minilabmemo/go-rest-arch/internal/config"
-	"github.com/minilabmemo/go-rest-arch/internal/logger"
+	internal "github.com/minilabmemo/go-rest-arch/services"
+	"github.com/minilabmemo/go-rest-arch/services/apis"
+	"github.com/minilabmemo/go-rest-arch/services/card/delivery/ginrouter"
+	"github.com/minilabmemo/go-rest-arch/services/card/usecase"
+	"github.com/minilabmemo/go-rest-arch/services/config"
+	"github.com/minilabmemo/go-rest-arch/services/logger"
 
 	"go.uber.org/zap"
 )
