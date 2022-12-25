@@ -26,3 +26,5 @@ cd cmd/app-core
 go run main.go
 
 ```
+
+test
