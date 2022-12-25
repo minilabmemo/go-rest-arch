@@ -2,7 +2,7 @@ package logger
 
 import "go.uber.org/zap"
 
-//TODO setting 
+//TODO setting
 func InitLogger() {
 	logger, _ := zap.NewDevelopment()
 
