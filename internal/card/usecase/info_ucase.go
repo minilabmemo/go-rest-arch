@@ -26,11 +26,11 @@ func (*infoUsecase) GetInfo() (models.Info, error) {
 
 }
 
-func (*infoUsecase) Update(info *models.Info) error {
-	if info.Name == "" {
+func (*infoUsecase) Update(body *models.InfoUpdate) error {
+	if body.Name == "" {
 		return errors.Errorf("no Name")
 	}
-	config.ConfigData.Service.Name = info.Name
+	config.ConfigData.Service.Name = body.Name
 	// internal.Version = info.Version
 
 	return nil

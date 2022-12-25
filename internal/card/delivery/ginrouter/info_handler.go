@@ -42,12 +42,12 @@ func (a *InfoHandler) GetInfo(c *gin.Context) {
 // @Schemes http
 // @Description put info API service name
 // @Tags infos
-// @Param Info body models.Info true "Info"
+// @Param InfoUpdate body models.InfoUpdate true "InfoUpdate"
 // @Success 200 {string} ok
 // @Router /service/api/v1/info [put]
 func (a *InfoHandler) UpdateInfo(c *gin.Context) {
 
-	body := models.Info{}
+	body := models.InfoUpdate{}
 	//gin example bind body
 	if err := c.BindJSON(&body); err != nil {
 		c.JSON(http.StatusBadRequest, err)
