@@ -4,7 +4,8 @@
 ## Build
 
 FROM golang:1.18-alpine AS builder
-RUN 
+RUN apk update && apk upgrade && \
+    apk --update add git make bash build-base
 WORKDIR /minilabmemo/go-rest-arch
 
 # Copy go.mod and go.sum files to workspace  CACHED
@@ -17,7 +18,7 @@ COPY . ./
 #RUN ls 
 
 WORKDIR /minilabmemo/go-rest-arch/cmd/app-core
-RUN  go build -o app-core
+RUN  make go-build
 
 
 ## Deploy
