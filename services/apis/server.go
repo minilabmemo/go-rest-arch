@@ -18,5 +18,5 @@ func StartHttpServer(errChan chan error, engine *gin.Engine) {
 		errChan <- engine.Run(endpoint)
 	}()
 
-	zap.S().Infof("Listening on port: %d", config.ConfigData.Service.Port)
+	zap.S().Infof("Listening on port: %d,http://0.0.0.:%d/swagger/index.html", config.ConfigData.Service.Port, config.ConfigData.Service.Port)
 }

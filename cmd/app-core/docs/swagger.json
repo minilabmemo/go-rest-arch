@@ -1,7 +1,7 @@
 {
     "swagger": "2.0",
     "info": {
-        "description": "This is a sample server celler server.",
+        "description": "This is a sample service server.",
         "title": "Swagger Example API",
         "contact": {},
         "version": "1.0"
@@ -37,12 +37,12 @@
                 "summary": "put info API",
                 "parameters": [
                     {
-                        "description": "Info",
-                        "name": "Info",
+                        "description": "InfoUpdate",
+                        "name": "InfoUpdate",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/models.Info"
+                            "$ref": "#/definitions/models.InfoUpdate"
                         }
                     }
                 ],
@@ -58,17 +58,17 @@
         }
     },
     "definitions": {
-        "models.Info": {
+        "models.InfoUpdate": {
             "type": "object",
             "required": [
-                "name",
-                "version"
+                "description",
+                "name"
             ],
             "properties": {
-                "name": {
+                "description": {
                     "type": "string"
                 },
-                "version": {
+                "name": {
                     "type": "string"
                 }
             }

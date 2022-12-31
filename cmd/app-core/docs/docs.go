@@ -46,12 +46,12 @@ const docTemplate = `{
                 "summary": "put info API",
                 "parameters": [
                     {
-                        "description": "Info",
-                        "name": "Info",
+                        "description": "InfoUpdate",
+                        "name": "InfoUpdate",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/models.Info"
+                            "$ref": "#/definitions/models.InfoUpdate"
                         }
                     }
                 ],
@@ -67,17 +67,17 @@ const docTemplate = `{
         }
     },
     "definitions": {
-        "models.Info": {
+        "models.InfoUpdate": {
             "type": "object",
             "required": [
-                "name",
-                "version"
+                "description",
+                "name"
             ],
             "properties": {
-                "name": {
+                "description": {
                     "type": "string"
                 },
-                "version": {
+                "name": {
                     "type": "string"
                 }
             }
@@ -92,7 +92,7 @@ var SwaggerInfo = &swag.Spec{
 	BasePath:         "",
 	Schemes:          []string{},
 	Title:            "Swagger Example API",
-	Description:      "This is a sample server celler server.",
+	Description:      "This is a sample service server.",
 	InfoInstanceName: "swagger",
 	SwaggerTemplate:  docTemplate,
 }

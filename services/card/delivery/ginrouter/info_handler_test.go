@@ -46,10 +46,9 @@ func TestInfoHandler(t *testing.T) {
 	//驗證發起請求後的回覆是否正確
 	assert.Equal(t, http.StatusOK, w.Code)
 	t.Log("body", w.Body.String()) //使用go test -v 才可以印出
-	//驗證回覆
-	expactedResp := `{"name":"rest-demo","version":"1.0.0"}`
-	if !reflect.DeepEqual(w.Body.String(), expactedResp) {
-		t.Errorf("Resp(%s) != expactedResp(%s)", w.Body.String(), expactedResp)
+	//驗證回覆 200
+	if !reflect.DeepEqual(w.Code, http.StatusOK) {
+		t.Errorf("Resp(%d) != expactedResp(%d)", w.Code, http.StatusOK)
 	}
 }
 
@@ -68,7 +67,7 @@ func TestUpdateInfoHandler(t *testing.T) {
 	//驗證發起請求後的回覆是否正確
 	assert.Equal(t, http.StatusOK, w2.Code)
 	t.Log("body", w2.Body.String()) //使用go test -v 才可以印出
-	expactedResp := `{"name":"test","version":"1.0.0"}`
+	expactedResp := `{"name":"test","version":"1.0.0","description":""}`
 	if !reflect.DeepEqual(w2.Body.String(), expactedResp) {
 		t.Errorf("Resp(%s) != expactedResp(%s)", w2.Body.String(), expactedResp)
 	}
