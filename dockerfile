@@ -4,6 +4,9 @@
 ## Build
 
 FROM golang:1.18-alpine AS builder
+
+ENV GO111MODULE=on
+
 RUN apk update && apk upgrade && \
     apk --update add git make bash build-base
 WORKDIR /minilabmemo/go-rest-arch
@@ -16,8 +19,8 @@ RUN go mod download
 # Copy the source code
 COPY . ./
 #RUN ls 
-
 WORKDIR /minilabmemo/go-rest-arch/cmd/app-core
+# Build the Go app
 RUN  make go-build
 
 

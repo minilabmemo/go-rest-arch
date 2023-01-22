@@ -27,10 +27,11 @@ All version info listed in go.mod
 
 ### start
 
-#### go run
+#### go run / go build
 ```
 cd cmd/app-core
 go run main.go
+go build -o app-core ./cmd/app-core/.
 ```
 
 #### docker build 
@@ -43,7 +44,16 @@ see https://makeoptim.com/en/tool/docker-build-not-output
 
 #### docker run
 ```
-docker run app-core
+$ docker run -p 8888:8888 app-core
+2023/01/22 05:43:05 viper.ConfigFileUsed OK: /configs/docker/service.toml
+2023/01/22 05:43:05 data: app-core
+2023/01/22 05:43:05 Mongo: mongo
+2023/01/22 05:43:05 Service.Name: app-core
+2023-01-22T05:43:05.550Z        INFO    logger/zap.go:10        InitLogger done
+2023-01-22T05:43:05.552Z        INFO    apis/server.go:21       Listening on port: 8888,http://0.0.0.:8888/swagger/index.html
+2023-01-22T05:43:05.553Z        INFO    app-core/main.go:45     Service started in: 2.2989ms
+2023-01-22T05:43:05.553Z        INFO    app-core/main.go:46     Version 1.0.0
+collection_todo 
 ```
 #### test
 ```
