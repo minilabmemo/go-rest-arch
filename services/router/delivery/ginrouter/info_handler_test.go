@@ -11,9 +11,9 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/stretchr/testify/assert"
 
-	"github.com/minilabmemo/go-rest-arch/services/card/usecase"
 	"github.com/minilabmemo/go-rest-arch/services/config"
 	"github.com/minilabmemo/go-rest-arch/services/models"
+	"github.com/minilabmemo/go-rest-arch/services/router/usecase"
 )
 
 func init() {

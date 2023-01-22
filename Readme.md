@@ -3,8 +3,8 @@
 [![Go Report Card](https://goreportcard.com/badge/github.com/minilabmemo/go-rest-arch)](https://goreportcard.com/report/github.com/minilabmemo/go-rest-arch)
 
 
-- 根據 [go-clean-arch](https://github.com/bxcodec/go-clean-arch) 產生出來的一套 RESTful API．
-- 放入常見的方法，作為一個 template
+- 根據 [go-clean-arch](https://github.com/bxcodec/go-clean-arch) 架構．加入實務操作
+- 本範例為 RESTful API 與 Mongo 資料庫操作
 
 
 
@@ -13,12 +13,14 @@ All version info listed in go.mod
 - viper
 - zaplog
 - swagger UI : http://localhost:8888/swagger/index.html
-```
-## install: github.com/swaggo/swag/cmd/swag
-## use :
-cd cmd/app-core
-swag init -pd  //-parseDependency
-```
+> install: github.com/swaggo/swag/cmd/swag
+> annotations guide: https://github.com/swaggo/swag
+> use :
+> ```
+> cd cmd/app-core
+> swag init -pd  //-parseDependency
+> ```
+> 
 - Gin Framework
 - httptest
 

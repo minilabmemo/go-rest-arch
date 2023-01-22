@@ -8,11 +8,15 @@ StartupMsg = 'This is the local Environment StartupMsg.'
 Level = 'DEBUG'
 File = '/logs/app-core.log'
 
+
 [Clients]
   [Clients.Mongo]
-  Protocol = 'http'
+  Protocol = 'mongodb'
   Host = 'localhost'
   Port = 27017
   Username = ''
   Password = ''
+  [Clients.Mongo.More]
+  Database='card'
+  Collection_Todo='todo'
 

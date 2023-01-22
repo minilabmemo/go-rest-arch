@@ -8,7 +8,7 @@ import (
 )
 
 // InfoHandler  represent the httphandler for Info
-type InfoHandler struct { // not interface?
+type InfoHandler struct {
 	CUsecase models.InfoUsecase
 }
 
@@ -19,18 +19,17 @@ func NewInfoHandler(base *gin.RouterGroup, us models.InfoUsecase) {
 	}
 
 	base.GET("/info", handler.GetInfo) //e.g.: http://127.0.0.1:8888/service/api/v1/info
-	base.PUT("/info", handler.UpdateInfo)
+	base.PATCH("/info", handler.UpdateInfo)
 
 }
 
 // @Summary Get info API
 // @Schemes http xx
 // @Description Get info API
-// @Tags infos
 // @Accept json
 // @Produce json
 // @Success 200 {string} ok
-// @Router /service/api/v1/info [get]
+// @Router /info [get]
 func (a *InfoHandler) GetInfo(c *gin.Context) {
 	//call usecase method
 	info, _ := a.CUsecase.GetInfo()
@@ -38,15 +37,12 @@ func (a *InfoHandler) GetInfo(c *gin.Context) {
 	c.JSON(http.StatusOK, info)
 }
 
-// @Summary put info API
-// @Schemes http
-// @Description put info API service name
-// @Tags infos
+// @Summary test patch InfoUpdate API
+// @Description just test only , not really update
 // @Param InfoUpdate body models.InfoUpdate true "InfoUpdate"
 // @Success 200 {string} ok
-// @Router /service/api/v1/info [put]
+// @Router /info [patch]
 func (a *InfoHandler) UpdateInfo(c *gin.Context) {
-
 	body := models.InfoUpdate{}
 	//gin example bind body
 	if err := c.BindJSON(&body); err != nil {
@@ -59,6 +55,5 @@ func (a *InfoHandler) UpdateInfo(c *gin.Context) {
 		c.JSON(http.StatusExpectationFailed, err)
 		return
 	}
-
 	c.JSON(http.StatusOK, "ok")
 }

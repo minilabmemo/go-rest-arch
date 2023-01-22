@@ -30,6 +30,7 @@ type ClientInfo struct {
 	Protocol string
 	Username string
 	Password string
+	More     map[string]string
 }
 
 func (c ClientInfo) Url(apiRoute string) string {

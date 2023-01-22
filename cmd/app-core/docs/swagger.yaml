@@ -1,4 +1,16 @@
+basePath: /service/api/v1
 definitions:
+  models.CardUpdate:
+    properties:
+      content:
+        example: finished CRUD APIs
+        type: string
+      title:
+        example: learn golang
+        type: string
+    required:
+    - title
+    type: object
   models.InfoUpdate:
     properties:
       description:
@@ -15,7 +27,74 @@ info:
   title: Swagger Example API
   version: "1.0"
 paths:
-  /service/api/v1/info:
+  /cards:
+    get:
+      description: Get info API
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: Get info API
+      tags:
+      - card
+    post:
+      description: post Card
+      parameters:
+      - description: CardUpdate
+        in: body
+        name: CardUpdate
+        required: true
+        schema:
+          $ref: '#/definitions/models.CardUpdate'
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: post Card API
+      tags:
+      - card
+  /cards/{id}:
+    delete:
+      description: Delete Card API
+      parameters:
+      - description: Card ID
+        in: path
+        name: id
+        required: true
+        type: string
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: Delete Card API
+      tags:
+      - card
+    put:
+      description: put Card API
+      parameters:
+      - description: Card ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: CardUpdate
+        in: body
+        name: CardUpdate
+        required: true
+        schema:
+          $ref: '#/definitions/models.CardUpdate'
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: put Card API
+      tags:
+      - card
+  /info:
     get:
       consumes:
       - application/json
@@ -28,10 +107,8 @@ paths:
           schema:
             type: string
       summary: Get info API
-      tags:
-      - infos
-    put:
-      description: put info API service name
+    patch:
+      description: just test only , not really update
       parameters:
       - description: InfoUpdate
         in: body
@@ -44,7 +121,5 @@ paths:
           description: OK
           schema:
             type: string
-      summary: put info API
-      tags:
-      - infos
+      summary: test patch InfoUpdate API
 swagger: "2.0"

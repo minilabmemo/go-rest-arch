@@ -16,17 +16,11 @@ const docTemplate = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
-        "/service/api/v1/info": {
+        "/cards": {
             "get": {
                 "description": "Get info API",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
                 "tags": [
-                    "infos"
+                    "card"
                 ],
                 "summary": "Get info API",
                 "responses": {
@@ -38,12 +32,114 @@ const docTemplate = `{
                     }
                 }
             },
-            "put": {
-                "description": "put info API service name",
+            "post": {
+                "description": "post Card",
                 "tags": [
-                    "infos"
+                    "card"
                 ],
-                "summary": "put info API",
+                "summary": "post Card API",
+                "parameters": [
+                    {
+                        "description": "CardUpdate",
+                        "name": "CardUpdate",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.CardUpdate"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/cards/{id}": {
+            "put": {
+                "description": "put Card API",
+                "tags": [
+                    "card"
+                ],
+                "summary": "put Card API",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Card ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "CardUpdate",
+                        "name": "CardUpdate",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.CardUpdate"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Delete Card API",
+                "tags": [
+                    "card"
+                ],
+                "summary": "Delete Card API",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Card ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/info": {
+            "get": {
+                "description": "Get info API",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Get info API",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "description": "just test only , not really update",
+                "summary": "test patch InfoUpdate API",
                 "parameters": [
                     {
                         "description": "InfoUpdate",
@@ -67,6 +163,22 @@ const docTemplate = `{
         }
     },
     "definitions": {
+        "models.CardUpdate": {
+            "type": "object",
+            "required": [
+                "title"
+            ],
+            "properties": {
+                "content": {
+                    "type": "string",
+                    "example": "finished CRUD APIs"
+                },
+                "title": {
+                    "type": "string",
+                    "example": "learn golang"
+                }
+            }
+        },
         "models.InfoUpdate": {
             "type": "object",
             "required": [
@@ -89,7 +201,7 @@ const docTemplate = `{
 var SwaggerInfo = &swag.Spec{
 	Version:          "1.0",
 	Host:             "",
-	BasePath:         "",
+	BasePath:         "/service/api/v1",
 	Schemes:          []string{},
 	Title:            "Swagger Example API",
 	Description:      "This is a sample service server.",
