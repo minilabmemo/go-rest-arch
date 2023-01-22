@@ -3,8 +3,8 @@
 [![Go Report Card](https://goreportcard.com/badge/github.com/minilabmemo/go-rest-arch)](https://goreportcard.com/report/github.com/minilabmemo/go-rest-arch)
 
 
-- 根據 [go-clean-arch](https://github.com/bxcodec/go-clean-arch) 架構．加入簡單的MongoDb DRUD操作
-- This example is a simple example of RESTful API and Mongo database operation
+- 根據 [go-clean-arch](https://github.com/bxcodec/go-clean-arch) 架構．加入簡單的MongoDB CRUD RESTful API操作
+- This example is based on the simple operation of the RESTful API and the Mongo database based on the clean architecture
 
 
 
