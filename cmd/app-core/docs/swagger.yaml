@@ -13,13 +13,13 @@ definitions:
     type: object
   models.InfoUpdate:
     properties:
-      description:
-        type: string
       name:
         type: string
+      startupMsg:
+        type: string
     required:
-    - description
     - name
+    - startupMsg
     type: object
 info:
   contact: {}
@@ -121,5 +121,5 @@ paths:
           description: OK
           schema:
             type: string
-      summary: test patch InfoUpdate API
+      summary: test patch InfoUpdate API , in-memory update
 swagger: "2.0"

@@ -59,6 +59,10 @@ func (m *mongoCardRepository) FetchAll(ctx context.Context) ([]models.Card, stri
 	if err != nil {
 		return nil, "", err
 	}
+	if res == nil {
+		res = []models.Card{}
+	}
+
 	return res, fmt.Sprintf("%d", total), nil
 }
 

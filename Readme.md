@@ -3,8 +3,8 @@
 [![Go Report Card](https://goreportcard.com/badge/github.com/minilabmemo/go-rest-arch)](https://goreportcard.com/report/github.com/minilabmemo/go-rest-arch)
 
 
-- 根據 [go-clean-arch](https://github.com/bxcodec/go-clean-arch) 架構．加入實務操作
-- 本範例為 RESTful API 與 Mongo 資料庫操作
+- 根據 [go-clean-arch](https://github.com/bxcodec/go-clean-arch) 架構．加入簡單的MongoDb DRUD操作
+- This example is a simple example of RESTful API and Mongo database operation
 
 
 
@@ -55,6 +55,11 @@ $ docker run -p 8888:8888 app-core
 2023-01-22T05:43:05.553Z        INFO    app-core/main.go:46     Version 1.0.0
 collection_todo 
 ```
+
+#### Swagger UI
+![swagger UI](./swagger-cards.png)
+
+
 #### test
 ```
 cd root

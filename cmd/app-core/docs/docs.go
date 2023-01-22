@@ -139,7 +139,7 @@ const docTemplate = `{
             },
             "patch": {
                 "description": "just test only , not really update",
-                "summary": "test patch InfoUpdate API",
+                "summary": "test patch InfoUpdate API , in-memory update",
                 "parameters": [
                     {
                         "description": "InfoUpdate",
@@ -182,14 +182,14 @@ const docTemplate = `{
         "models.InfoUpdate": {
             "type": "object",
             "required": [
-                "description",
-                "name"
+                "name",
+                "startupMsg"
             ],
             "properties": {
-                "description": {
+                "name": {
                     "type": "string"
                 },
-                "name": {
+                "startupMsg": {
                     "type": "string"
                 }
             }

@@ -37,7 +37,7 @@ func (a *InfoHandler) GetInfo(c *gin.Context) {
 	c.JSON(http.StatusOK, info)
 }
 
-// @Summary test patch InfoUpdate API
+// @Summary test patch InfoUpdate API , in-memory update
 // @Description just test only , not really update
 // @Param InfoUpdate body models.InfoUpdate true "InfoUpdate"
 // @Success 200 {string} ok
